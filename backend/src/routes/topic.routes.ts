@@ -73,7 +73,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { name } = req.params;
+      const name = req.params.name as string;
       const userId = req.user?.userId;
 
       const topic = await topicService.getTopic(name, userId);
@@ -138,7 +138,7 @@ router.post(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { name } = req.params;
+      const name = req.params.name as string;
       const topic = await topicService.getTopic(name);
 
       await topicService.joinTopic(topic.id, req.user!.userId);
@@ -159,7 +159,7 @@ router.post(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { name } = req.params;
+      const name = req.params.name as string;
       const topic = await topicService.getTopic(name);
 
       await topicService.leaveTopic(topic.id, req.user!.userId);
@@ -181,7 +181,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { name } = req.params;
+      const name = req.params.name as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 20;
       const sort = (req.query.sort as any) || 'hot';
@@ -213,7 +213,7 @@ router.post(
   createPostLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { name } = req.params;
+      const name = req.params.name as string;
       const { title, content, type, linkUrl, imageUrl, isNSFW, isSpoiler, tagId } =
         req.body;
 
@@ -275,7 +275,7 @@ router.delete(
   isOwner,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { userId } = req.params;
+      const userId = req.params.userId as string;
 
       await topicService.removeModerator(req.topic!.id, req.user!.userId, userId);
 

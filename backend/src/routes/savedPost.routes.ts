@@ -13,7 +13,7 @@ router.post(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { postId } = req.params;
+      const postId = req.params.postId as string;
 
       await savedPostService.savePost(req.user!.userId, postId);
 
@@ -33,7 +33,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { postId } = req.params;
+      const postId = req.params.postId as string;
 
       await savedPostService.unsavePost(req.user!.userId, postId);
 
@@ -53,7 +53,7 @@ router.get(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { postId } = req.params;
+      const postId = req.params.postId as string;
 
       const isSaved = await savedPostService.isPostSaved(req.user!.userId, postId);
 

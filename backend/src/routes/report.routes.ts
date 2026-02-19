@@ -91,7 +91,7 @@ router.get(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       const report = await reportService.getReportById(id);
 
@@ -111,7 +111,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { resolution } = req.body;
 
       const report = await reportService.resolveReport(
@@ -136,7 +136,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       const report = await reportService.dismissReport(id, req.user!.userId);
 

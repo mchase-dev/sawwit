@@ -13,7 +13,7 @@ router.get(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicId } = req.params;
+      const topicId = req.params.topicId as string;
 
       const rules = await automodService.getTopicRules(topicId);
 
@@ -33,7 +33,7 @@ router.get(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicId } = req.params;
+      const topicId = req.params.topicId as string;
 
       const rules = await automodService.getActiveTopicRules(topicId);
 
@@ -95,7 +95,7 @@ router.get(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       const rule = await automodService.getRuleById(id);
 
@@ -115,7 +115,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const {
         name,
         conditions,
@@ -153,7 +153,7 @@ router.patch(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { enabled } = req.body;
 
       const rule = await automodService.toggleRule(id, enabled);
@@ -174,7 +174,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await automodService.deleteRule(id, req.user!.userId);
 

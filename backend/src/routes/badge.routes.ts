@@ -14,7 +14,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { userId } = req.params;
+      const userId = req.params.userId as string;
 
       const badges = await badgeService.getUserBadges(userId);
 
@@ -34,7 +34,8 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { userId, topicId } = req.params;
+      const userId = req.params.userId as string;
+      const topicId = req.params.topicId as string;
 
       const badge = await badgeService.getUserBadgeInTopic(userId, topicId);
 
@@ -54,7 +55,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicId } = req.params;
+      const topicId = req.params.topicId as string;
 
       const badges = await badgeService.getTopicBadges(topicId);
 
@@ -101,7 +102,8 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicId, userId } = req.params;
+      const topicId = req.params.topicId as string;
+      const userId = req.params.userId as string;
 
       await badgeService.removeBadge(topicId, userId);
 

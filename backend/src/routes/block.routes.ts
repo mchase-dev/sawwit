@@ -13,7 +13,7 @@ router.post(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { userId } = req.params;
+      const userId = req.params.userId as string;
 
       await blockService.blockUser(req.user!.userId, userId);
 
@@ -33,7 +33,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { userId } = req.params;
+      const userId = req.params.userId as string;
 
       await blockService.unblockUser(req.user!.userId, userId);
 
@@ -77,7 +77,7 @@ router.get(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { userId } = req.params;
+      const userId = req.params.userId as string;
 
       const isBlocked = await blockService.isBlocked(req.user!.userId, userId);
 

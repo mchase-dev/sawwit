@@ -143,7 +143,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicName } = req.params;
+      const topicName = req.params.topicName as string;
       const query = req.query.q as string;
       const limit = parseInt(req.query.limit as string) || 20;
 

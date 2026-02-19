@@ -14,7 +14,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicId } = req.params;
+      const topicId = req.params.topicId as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 50;
 
@@ -79,7 +79,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { moderatorId } = req.params;
+      const moderatorId = req.params.moderatorId as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 50;
 
@@ -105,7 +105,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { userId } = req.params;
+      const userId = req.params.userId as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 50;
 
@@ -130,7 +130,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { topicId } = req.params;
+      const topicId = req.params.topicId as string;
 
       const stats = await modLogService.getTopicStats(topicId);
 
@@ -151,7 +151,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { moderatorId } = req.params;
+      const moderatorId = req.params.moderatorId as string;
 
       const stats = await modLogService.getModeratorStats(moderatorId);
 

@@ -38,7 +38,7 @@ router.get(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { partnerId } = req.params;
+      const partnerId = req.params.partnerId as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 50;
 
@@ -90,7 +90,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await directMessageService.markAsRead(id, req.user!.userId);
 
@@ -110,7 +110,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { partnerId } = req.params;
+      const partnerId = req.params.partnerId as string;
 
       await directMessageService.markConversationAsRead(
         req.user!.userId,
@@ -133,7 +133,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await directMessageService.deleteMessage(id, req.user!.userId);
 

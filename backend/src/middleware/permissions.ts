@@ -13,7 +13,7 @@ export async function isMember(req: Request, _res: Response, next: NextFunction)
       throw new AppError(401, 'Authentication required');
     }
 
-    const topicName = req.params.topicName || req.params.name;
+    const topicName = (req.params.topicName || req.params.name) as string;
     if (!topicName) {
       throw new AppError(400, 'Topic name not provided');
     }
@@ -62,7 +62,7 @@ export async function isModerator(req: Request, _res: Response, next: NextFuncti
       throw new AppError(401, 'Authentication required');
     }
 
-    const topicName = req.params.topicName || req.params.name;
+    const topicName = (req.params.topicName || req.params.name) as string;
     if (!topicName) {
       throw new AppError(400, 'Topic name not provided');
     }
@@ -120,7 +120,7 @@ export async function isOwner(req: Request, _res: Response, next: NextFunction) 
       throw new AppError(401, 'Authentication required');
     }
 
-    const topicName = req.params.topicName || req.params.name;
+    const topicName = (req.params.topicName || req.params.name) as string;
     if (!topicName) {
       throw new AppError(400, 'Topic name not provided');
     }

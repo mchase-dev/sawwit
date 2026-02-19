@@ -40,7 +40,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { postId } = req.params;
+      const postId = req.params.postId as string;
 
       const mentions = await mentionService.getPostMentions(postId);
 
@@ -60,7 +60,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { commentId } = req.params;
+      const commentId = req.params.commentId as string;
 
       const mentions = await mentionService.getCommentMentions(commentId);
 

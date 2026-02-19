@@ -31,7 +31,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { identifier } = req.params;
+      const identifier = req.params.identifier as string;
       const userId = req.user?.userId;
 
       const post = await postService.getPost(identifier, userId);
@@ -52,7 +52,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { title, content, isNSFW, isSpoiler, tagId } = req.body;
 
       // Check if user is moderator (support both ID and slug)
@@ -93,7 +93,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       // Check if user is moderator (support both ID and slug)
       const post = await getPostByIdOrSlug(id);
@@ -129,7 +129,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const sort = (req.query.sort as any) || 'best';
       const userId = req.user?.userId;
 
@@ -152,7 +152,7 @@ router.post(
   createCommentLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { content, parentId } = req.body;
 
       const comment = await commentService.createComment(
@@ -178,7 +178,7 @@ router.post(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await savedPostService.savePost(req.user!.userId, id);
 
@@ -198,7 +198,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await savedPostService.unsavePost(req.user!.userId, id);
 
@@ -218,7 +218,7 @@ router.post(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await postService.pinPost(id);
 
@@ -238,7 +238,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await postService.unpinPost(id);
 
@@ -258,7 +258,7 @@ router.post(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await postService.lockPost(id);
 
@@ -278,7 +278,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await postService.unlockPost(id);
 

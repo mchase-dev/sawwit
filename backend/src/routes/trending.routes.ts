@@ -55,7 +55,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicId } = req.params;
+      const topicId = req.params.topicId as string;
       const limit = parseInt(req.query.limit as string) || 20;
 
       const posts = await trendingService.getTrendingPostsForTopic(topicId, limit);

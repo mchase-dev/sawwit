@@ -59,7 +59,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await notificationService.markAsRead(id, req.user!.userId);
 
@@ -97,7 +97,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await notificationService.deleteNotification(id, req.user!.userId);
 

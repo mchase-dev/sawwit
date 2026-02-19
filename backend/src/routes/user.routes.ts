@@ -15,7 +15,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { username } = req.params;
+      const username = req.params.username as string;
       const user = await userService.getUserByUsername(username);
 
       res.status(200).json({ user });
@@ -106,7 +106,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { username } = req.params;
+      const username = req.params.username as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 20;
 
@@ -128,7 +128,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { username } = req.params;
+      const username = req.params.username as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 20;
 

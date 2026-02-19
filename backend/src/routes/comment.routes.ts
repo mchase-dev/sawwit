@@ -17,7 +17,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const userId = req.user?.userId;
 
       const comment = await commentService.getCommentById(id, userId);
@@ -38,7 +38,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { content } = req.body;
 
       // Check if user is moderator
@@ -84,7 +84,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       // Check if user is moderator
       const comment = await db.query.comments.findFirst({

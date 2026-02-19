@@ -14,7 +14,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { topicId } = req.params;
+      const topicId = req.params.topicId as string;
 
       const tags = await tagService.getTopicTags(topicId);
 
@@ -58,7 +58,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       const tag = await tagService.getTagById(id);
 
@@ -78,7 +78,7 @@ router.put(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const { name, color, description } = req.body;
 
       const tag = await tagService.updateTag(req.user!.userId, id, {
@@ -103,7 +103,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
 
       await tagService.deleteTag(id, req.user!.userId);
 
@@ -123,7 +123,7 @@ router.get(
   generalLimiter,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { id } = req.params;
+      const id = req.params.id as string;
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 20;
 

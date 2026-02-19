@@ -68,7 +68,7 @@ router.delete(
   authenticate,
   async (req: Request, res: Response, next: NextFunction)=> {
     try {
-      const { filename } = req.params;
+      const filename = req.params.filename as string;
       const folder = (req.query.folder as string) || 'general';
 
       await storageService.deleteFile(filename, folder);
