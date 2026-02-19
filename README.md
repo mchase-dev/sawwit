@@ -2,8 +2,20 @@
 
 Sawwit is a tech demonstration for a Reddit-inspired community discussion platform built with Node.js, Express, React, Typescript, and PostgreSQL. This is a personal project, and not production ready. It is intended for educational purposes only.
 
+## Screenshots
+
+### Home Feed
+![Home Feed](screenshots/sawwit-screenshot-01.jpg)
+
+### Create Post
+![Create Post](screenshots/sawwit-screenshot-02.jpg)
+
+### Post & Comments
+![Post & Comments](screenshots/sawwit-screenshot-03.jpg)
+
 ## Table of Contents
 
+- [Screenshots](#screenshots)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Prerequisites](#prerequisites)
